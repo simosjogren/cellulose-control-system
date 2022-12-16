@@ -1,0 +1,4 @@
+default_Cooking_time=15=[15,1000]
+default_Cooking_temperature=30=[25,150]
+default_Cooking_pressure=120=[20,150]
+default_Impregnation_time=15=[15,1000]

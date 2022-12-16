@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Tuni.MppOpcUaClientLib</name>
+    </assembly>
+    <members>
+        <member name="T:Tuni.MppOpcUaClientLib.ConnectionParamsHolder">
+            <summary>
+            Holds connection parameters.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.ConnectionParamsHolder.#ctor(System.String)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="url">OPC UA server URL.</param>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.ConnectionParamsHolder.ServerUrl">
+            <summary>
+            OPC UA server URL.
+            </summary>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.ConnectionParamsHolder.Plc1Namespace">
+            <summary>
+            The namespace of the PLC1 node in the OPC UA server.
+            </summary>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.ConnectionParamsHolder.ConnectionTimeout_ms">
+            <summary>
+            Connection timeout in milliseconds.
+            </summary>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.ConnectionStatusEventArgs">
+            <summary>
+            Used to notify about connection status changes. Inheritance from the EventArgs base class is used because of the C# events convention.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.ConnectionStatusEventArgs.#ctor(Tuni.MppOpcUaClientLib.ConnectionStatusInfo)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="st"></param>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.ConnectionStatusEventArgs.StatusInfo">
+            <summary>
+            Status information.
+            </summary>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.ConnectionStatusInfo">
+            <summary>
+            Connection status information.
+            </summary>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.StatusType">
+            <summary>
+            There are various UA stack status types that are mapped to these for simplicity.
+            </summary>
+        </member>
+        <member name="F:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.StatusType.Unknown">
+            <summary>
+            Connection status is unknown.
+            </summary>
+        </member>
+        <member name="F:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.StatusType.Disconnected">
+            <summary>
+            Disconnected.
+            </summary>
+        </member>
+        <member name="F:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.StatusType.Connected">
+            <summary>
+            Connected.
+            </summary>
+        </member>
+        <member name="F:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.StatusType.Connecting">
+            <summary>
+            Connecting or reconnecting.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.#ctor(UnifiedAutomation.UaClient.ServerConnectionStatus)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="status">Status.</param>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.SimplifiedStatus">
+            <summary>
+            There are various UA stack status types that are mapped to this for simplicity.
+            </summary>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.ConnectionStatusInfo.FullStatusString">
+            <summary>
+            Full status string as received from the OPC UA stack.
+            </summary>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppValueBool">
+            <summary>
+            Boolean value.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppValueBool.#ctor(System.Boolean)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="v">Value.</param>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.MppValueBool.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppValueBool.GetValue">
+            <summary>
+            Gets the value.
+            </summary>
+            <returns>Value</returns>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppClient">
+            <summary>
+            Implements an OPC UA client for the mini pulp process (MPP).
+            </summary>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppClient.ProcessItemsChangedEventHandler">
+            <summary>
+            Event handler delegate for ProcessItemChanged.
+            </summary>
+            <param name="source">Event source.</param>
+            <param name="args">Event arguments.</param>
+        </member>
+        <member name="E:Tuni.MppOpcUaClientLib.MppClient.ProcessItemsChanged">
+            <summary>
+            An event raised when an item changes in the process.
+            </summary>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppClient.ConnectionStatusEventHandler">
+            <summary>
+            Event handler delegate for ConnectionStatus.
+            </summary>
+            <param name="source">Source.</param>
+            <param name="args">Event arguments.</param>
+        </member>
+        <member name="E:Tuni.MppOpcUaClientLib.MppClient.ConnectionStatus">
+            <summary>
+            An event raised when the connection status changes.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.#ctor(Tuni.MppOpcUaClientLib.ConnectionParamsHolder)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="connParams">Connection parameter.</param>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.Dispose">
+            <summary>
+            Disposes the object.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.Init">
+            <summary>
+            Initializes the object. This function may only be called once for each object.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if the object state does not permit the action or if another failure occurs.</exception>
+            <exception cref="T:System.TimeoutException">Thrown if the connection times out.</exception>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.AddToSubscription(System.String)">
+            <summary>
+            Adds a process item to the subscription list so notifications will be received about its value changes.
+            </summary>
+            <param name="name">Item name.</param>
+            <exception cref="T:System.ArgumentException">Thrown if an invalid argument has been given.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if the object state does not permit the action.</exception>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.SetOnOffItem(System.String,System.Boolean)">
+            <summary>
+            Sets the status of an on/off item.
+            </summary>
+            <param name="name">Item name.</param>
+            <param name="value">True for on, otherwise false.</param>
+            <exception cref="T:System.ArgumentException">Thrown if an invalid argument has been given.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if the object state does not permit the action.</exception>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.SetValveOpening(System.String,System.Int32)">
+            <summary>
+            Sets the opening of a control valve.
+            </summary>
+            <param name="name">Valve name.</param>
+            <param name="opening">The opening to be set. 0 is fully closed, 100 is fully open.</param>
+            <exception cref="T:System.ArgumentException">Thrown if an invalid argument has been given.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if the object state does not permit the action.</exception>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.SetPumpControl(System.String,System.Int32)">
+            <summary>
+            Sets pump status.
+            </summary>
+            <param name="name">Pump name.</param>
+            <param name="power">Power to be set. 0 for off, 100 for maximum.</param>
+            <exception cref="T:System.ArgumentException">Thrown if an invalid argument has been given.</exception>
+            <exception cref="T:System.InvalidOperationException">Thrown if the object state does not permit the action.</exception>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser">
+            <summary>
+            Ensures that items are synchronised between threads. Also maintains state information.
+            </summary>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser.StateType">
+            <summary>
+            Indicates client state.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser.#ctor">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser.StartInit">
+            <summary>
+            Sets the state to "initialising".
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if the object state does not allow the operation.</exception>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser.FinishInit(UnifiedAutomation.UaClient.Session,UnifiedAutomation.UaClient.Subscription,System.UInt16)">
+            <summary>
+            Sets the state to "initialised".
+            </summary>
+            <param name="sess">Session.</param>
+            <param name="subs">Subscription.</param>
+            <param name="nsIndex">Namespace index.</param>
+            <exception cref="T:System.InvalidOperationException">Thrown if the object state does not allow the operation.</exception>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser.DisposeUaConnection">
+            <summary>
+            Sets the state to "disposed".
+            </summary>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser.Session">
+            <summary>
+            Session object.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if the state does not allow the member to be utilised.</exception>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser.Subscription">
+            <summary>
+            Subscription object.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if the state does not allow the member to be utilised.</exception>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.MppClient.StatefulSynchroniser.NamespaceIndex">
+            <summary>
+            The relevant namespace index in the UA server.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Thrown if the state does not allow the member to be utilised.</exception>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppValueDouble">
+            <summary>
+            Double value.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppValueDouble.#ctor(System.Double)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="v">Value.</param>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.MppValueDouble.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppValueDouble.GetValue">
+            <summary>
+            Gets the value.
+            </summary>
+            <returns>Value</returns>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppValueInt">
+            <summary>
+            Integer value.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppValueInt.#ctor(System.Int32)">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="v">Value.</param>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.MppValueInt.Value">
+            <summary>
+            Value.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppValueInt.GetValue">
+            <summary>
+            Gets the value.
+            </summary>
+            <returns>Value</returns>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppValue">
+            <summary>
+            Represents a value on the server.
+            </summary>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.MppValue.ValueTypeType">
+            <summary>
+            Specifies the type of the value.
+            </summary>
+        </member>
+        <member name="F:Tuni.MppOpcUaClientLib.MppValue.ValueTypeType.Bool">
+            <summary>
+            Boolean.
+            </summary>
+        </member>
+        <member name="F:Tuni.MppOpcUaClientLib.MppValue.ValueTypeType.Double">
+            <summary>
+            Double.
+            </summary>
+        </member>
+        <member name="F:Tuni.MppOpcUaClientLib.MppValue.ValueTypeType.Int">
+            <summary>
+            Integer.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppValue.#ctor(Tuni.MppOpcUaClientLib.MppValue.ValueTypeType)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.MppValue.ValueType">
+            <summary>
+            The type of the value.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.MppValue.GetValue">
+            <summary>
+            Returns the value.
+            </summary>
+            <returns>Value.</returns>
+        </member>
+        <member name="T:Tuni.MppOpcUaClientLib.ProcessItemChangedEventArgs">
+            <summary>
+            Event arguments for ProcessItemChanged.
+            </summary>
+        </member>
+        <member name="M:Tuni.MppOpcUaClientLib.ProcessItemChangedEventArgs.#ctor(System.Collections.Generic.Dictionary{System.String,Tuni.MppOpcUaClientLib.MppValue})">
+            <summary>
+            Constructor.
+            </summary>
+            <param name="items">The items that have changed in the process and their values.</param>
+        </member>
+        <member name="P:Tuni.MppOpcUaClientLib.ProcessItemChangedEventArgs.ChangedItems">
+            <summary>
+            The items that have changed in the process and their values.
+            Note that this *may* or *may not* contain all the items currently in the subscription.
+            </summary>
+        </member>
+    </members>
+</doc>
