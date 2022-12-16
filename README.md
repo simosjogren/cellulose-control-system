@@ -1,4 +1,4 @@
-# Real-time control system
+# Real-time control system (C#)
 Real-time control system for controlling cellulose cooking sequence (including GUI)
 
 Controls a JavaScript-based simulator of the actual system. Interface-documentation of the project was made using Doxygen.
