@@ -9,6 +9,11 @@ UML class-diagram of the control system:
 
 SequenceDriver->Process is a Realtime-critical connection.
 
+UML activity-diagram of the control-system:
+
+![aktiviteettikaavio](https://user-images.githubusercontent.com/50803295/208091478-1885079c-ec02-4885-9171-d88b3a936c09.PNG)
+
+
 Graphical user interface of the software:
 
 ![gui](https://user-images.githubusercontent.com/50803295/208089835-cd788b53-1bad-4568-9ae0-b5765eb77b1c.PNG)
