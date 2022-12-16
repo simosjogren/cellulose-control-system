@@ -7,7 +7,7 @@ UML class-diagram of the control system:
 
 ![luokkakaavio (2)](https://user-images.githubusercontent.com/50803295/208089030-15b028f8-e0ba-4222-bcab-6c9c368d483c.png)
 
-SequenceDriver->Process is a Realtime-critical connection.
+SequenceDriver->Process is a time-critical connection.
 
 UML activity-diagram of the control-system:
 
